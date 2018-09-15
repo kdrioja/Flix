@@ -8,10 +8,17 @@
 
 import UIKit
 
-class NowPlayingViewController: UIViewController {
+class NowPlayingViewController: UIViewController, UITableViewDataSource {
 
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.dataSource = self
+        
+        
+        
         
         //! ("banger") causes it to force unwrap. if it was nil your app would crash
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
@@ -48,7 +55,14 @@ class NowPlayingViewController: UIViewController {
         task.resume()
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath)
+        return cell
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
