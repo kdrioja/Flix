@@ -12,6 +12,8 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     
+    var movies: [[String: Any]] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,11 +46,15 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 //cast this data in order to get it from JSON form
                 let movies = dataDictionary["results"] as! [[String: Any]]
+                self.movies = movies
                 
+                self.tableView.reloadData()
+                
+                /*
                 for movie in movies {
                     let title = movie["title"] as! String
                     print(title)
-                }
+                }*/
                 //print(dataDictionary)
             }
         }
@@ -56,11 +62,24 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return movies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath)
+        //the table view calls this method every time it needs a cell
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
+        
+        let movie = movies[indexPath.row]
+        let title = movie["title"] as! String
+        let overview = movie["overview"] as! String
+        
+        cell.titleLabel.text = title
+        cell.overviewLabel.text = overview
+        
+        
+        
+        
         return cell
     }
     
