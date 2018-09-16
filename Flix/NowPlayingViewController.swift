@@ -11,17 +11,27 @@ import AlamofireImage
 
 class NowPlayingViewController: UIViewController, UITableViewDataSource {
     
-    
-    
     @IBOutlet weak var tableView: UITableView!
     
     var movies: [[String: Any]] = []
+    var refreshControl: UIRefreshControl! //! is called implicitely optional mening that when its referenced its going to unwrap it and it better have something in it or it will crash
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.dataSource = self
+        refreshControl = UIRefreshControl() //() to instantiate
+        refreshControl.addTarget(self, action: #selector(NowPlayingViewController.didPullToRefresh(_:)), for: .valueChanged)
         
+        tableView.insertSubview(refreshControl, at: 0) //0 for the very top
+        
+        tableView.dataSource = self
+        fetchMovies()
+    }
+    
+    @objc func didPullToRefresh(_ refreshControl: UIRefreshControl) {
+        fetchMovies()
+    }
+    func fetchMovies() {
         //! ("banger") causes it to force unwrap. if it was nil your app would crash
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
         
@@ -50,15 +60,18 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
                 
                 self.tableView.reloadData()
                 
+                self.refreshControl.endRefreshing()
+                
                 /*
-                for movie in movies {
-                    let title = movie["title"] as! String
-                    print(title)
-                }*/
+                 for movie in movies {
+                 let title = movie["title"] as! String
+                 print(title)
+                 }*/
                 //print(dataDictionary)
             }
         }
         task.resume()
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
