@@ -19,9 +19,6 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         
         tableView.dataSource = self
         
-        
-        
-        
         //! ("banger") causes it to force unwrap. if it was nil your app would crash
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
         
@@ -77,8 +74,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
         
-        
-        
+        print(overview)
         
         return cell
     }
