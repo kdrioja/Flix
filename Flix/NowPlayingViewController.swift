@@ -11,6 +11,8 @@ import AlamofireImage
 
 class NowPlayingViewController: UIViewController, UITableViewDataSource {
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     @IBOutlet weak var tableView: UITableView!
     
     var movies: [[String: Any]] = []
@@ -32,6 +34,8 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         fetchMovies()
     }
     func fetchMovies() {
+        activityIndicator.startAnimating()
+        
         //! ("banger") causes it to force unwrap. if it was nil your app would crash
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
         
@@ -62,6 +66,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
                 
                 self.refreshControl.endRefreshing()
                 
+                self.activityIndicator.stopAnimating()
                 /*
                  for movie in movies {
                  let title = movie["title"] as! String

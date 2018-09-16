@@ -140,12 +140,12 @@
 			isa = PBXGroup;
 			children = (
 				5D45938C214DA53100061651 /* NowPlayingViewController.swift */,
+				5D45938E214DCEB000061651 /* MovieCell.swift */,
 				5DDB6673214CA646001BA32B /* AppDelegate.swift */,
 				5DDB6677214CA646001BA32B /* Main.storyboard */,
 				5DDB667A214CA647001BA32B /* Assets.xcassets */,
 				5DDB667C214CA647001BA32B /* LaunchScreen.storyboard */,
 				5DDB667F214CA647001BA32B /* Info.plist */,
-				5D45938E214DCEB000061651 /* MovieCell.swift */,
 			);
 			path = Flix;
 			sourceTree = "<group>";
