@@ -25,6 +25,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         refreshControl.addTarget(self, action: #selector(NowPlayingViewController.didPullToRefresh(_:)), for: .valueChanged)
         
         tableView.insertSubview(refreshControl, at: 0) //0 for the very top
+        tableView.rowHeight = 229
         
         tableView.dataSource = self
         fetchMovies()
@@ -101,7 +102,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         
         cell.posterImageView.af_setImage(withURL: posterURL)
 
-        print(overview)
+        //print(overview)
         
         return cell
     }
