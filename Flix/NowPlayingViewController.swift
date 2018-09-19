@@ -34,6 +34,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     @objc func didPullToRefresh(_ refreshControl: UIRefreshControl) {
         fetchMovies()
     }
+    
     func fetchMovies() {
         activityIndicator.startAnimating()
         
