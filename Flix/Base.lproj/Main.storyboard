@@ -219,7 +219,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hCK-9o-u9l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="36" y="86.806596701649184"/>
+            <point key="canvasLocation" x="228" y="87"/>
         </scene>
         <!--Superhero-->
         <scene sceneID="AuQ-W4-PqU">
@@ -238,7 +238,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tkt-9i-OX2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="36" y="826.23688155922048"/>
+            <point key="canvasLocation" x="228" y="826"/>
         </scene>
     </scenes>
     <resources>
