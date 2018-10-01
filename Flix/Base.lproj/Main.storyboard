@@ -59,7 +59,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="u4e-yt-EVn" firstAttribute="top" secondItem="Mp8-KD-cGp" secondAttribute="bottom" constant="8" id="2HP-Vv-M11"/>
-                                                <constraint firstAttribute="bottom" secondItem="v7U-v6-ge6" secondAttribute="bottom" constant="8" id="2nO-Lw-4G8"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="v7U-v6-ge6" secondAttribute="bottom" constant="8" id="2nO-Lw-4G8"/>
                                                 <constraint firstItem="v7U-v6-ge6" firstAttribute="leading" secondItem="7Ui-4S-Jsx" secondAttribute="leading" constant="8" id="7QD-he-DW4"/>
                                                 <constraint firstItem="Mp8-KD-cGp" firstAttribute="top" secondItem="v7U-v6-ge6" secondAttribute="top" id="Dgb-XL-zt1"/>
                                                 <constraint firstAttribute="trailing" secondItem="Mp8-KD-cGp" secondAttribute="trailing" constant="8" id="Eyy-hp-UbZ"/>
