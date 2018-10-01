@@ -217,12 +217,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="125" height="191"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kNn-sa-Zuh">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kNn-sa-Zuh">
                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="191"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="kNn-sa-Zuh" secondAttribute="bottom" id="g4E-9q-gwS"/>
+                                            <constraint firstItem="kNn-sa-Zuh" firstAttribute="top" secondItem="Qf0-gc-fry" secondAttribute="top" id="sdv-95-Hm6"/>
+                                            <constraint firstAttribute="trailing" secondItem="kNn-sa-Zuh" secondAttribute="trailing" id="tc8-gW-gNQ"/>
+                                            <constraint firstItem="kNn-sa-Zuh" firstAttribute="leading" secondItem="Qf0-gc-fry" secondAttribute="leading" id="vac-aj-KQi"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="posterImageView" destination="kNn-sa-Zuh" id="JAW-bN-v0A"/>
                                         </connections>
