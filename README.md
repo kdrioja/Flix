@@ -189,10 +189,10 @@ Time spent: **X** hours spent in total
 
 The following **required** user stories are complete:
 
-- [ ] Create a movie model (+2pt)
-- [ ] Implement the movie model (+2pt)
-- [ ] Implement property observers (+2pt)
-- [ ] Create a basic API Client (+2pt)
+- [X] Create a movie model (+2pt)
+- [X] Implement the movie model (+2pt)
+- [X] Implement property observers (+2pt)
+- [X] Create a basic API Client (+2pt)
 
 The following **additional** user stories are implemented:
 

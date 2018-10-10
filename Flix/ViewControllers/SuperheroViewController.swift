@@ -16,7 +16,7 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var movies: [[String: Any]] = []
+    var movies: [Movie] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +42,8 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PosterCell", for: indexPath) as! PosterCell
         
         let movie = movies[indexPath.item]
+        cell.movie = movie
+        /*
         if let posterPathString = movie[MovieKeys.posterPath] as? String {
             //will only run if the poster path is not nil
             
@@ -50,10 +52,19 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
             let posterURL = URL(string: baseURLString + posterPathString)!
             cell.posterImageView.af_setImage(withURL: posterURL)
         }
+         */
         return cell
     }
     
     func fetchMovies() {
+        MovieApiManager().superheroMovies { (movies: [Movie]?, error: Error?) in
+            if let movies = movies {
+                self.movies = movies
+                self.collectionView.reloadData()
+            }
+        }
+        
+        /*
         //activityIndicator.startAnimating()
         
         //! ("banger") causes it to force unwrap. if it was nil your app would crash
@@ -80,7 +91,7 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 //cast this data in order to get it from JSON form
                 let movies = dataDictionary["results"] as! [[String: Any]]
-                self.movies = movies
+                self.movies = movies as! [Movie]
                 
                 self.collectionView.reloadData()
                 
@@ -89,7 +100,7 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
             }
         }
         task.resume()
-        
+        */
     }
     
 }

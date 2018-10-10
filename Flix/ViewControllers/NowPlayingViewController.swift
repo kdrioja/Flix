@@ -15,7 +15,8 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var movies: [[String: Any]] = []
+    //var movies: [[String: Any]] = []
+    var movies: [Movie] = []
     var refreshControl: UIRefreshControl! //! is called implicitely optional mening that when its referenced its going to unwrap it and it better have something in it or it will crash
     
     override func viewDidLoad() {
@@ -38,6 +39,15 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     
     func fetchMovies() {
         activityIndicator.startAnimating()
+        
+        MovieApiManager().nowPlayingMovies { (movies: [Movie]?, error: Error?) in
+            if let movies = movies {
+                self.movies = movies
+                self.tableView.reloadData()
+            }
+        }
+        
+        /*
         
         //! ("banger") causes it to force unwrap. if it was nil your app would crash
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
@@ -62,14 +72,34 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
             else if let data = data {
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 //cast this data in order to get it from JSON form
-                let movies = dataDictionary["results"] as! [[String: Any]]
-                self.movies = movies
+                let movieDictionaries = dataDictionary["results"] as! [[String: Any]]
+                
+                self.movies = Movie.movies(dictionaries: movieDictionaries)
+                /*
+                self.movies = []
+                for dictionary in movieDictionaries {
+                    let movie = Movie(dictionary: dictionary)
+                    self.movies.append(movie)
+                }
+                */
                 
                 self.tableView.reloadData()
                 
                 self.refreshControl.endRefreshing()
                 
                 self.activityIndicator.stopAnimating()
+                
+                /*
+                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                 let movieDictionaries = dataDictionary["results"] as! [[String: Any]]
+                 
+                 self.movies = []
+                 for dictionary in movieDictionaries {
+                 let movie = Movie(dictionary: dictionary)
+                 self.movies.append(movie)
+                 }
+                 */
+                
                 /*
                  for movie in movies {
                  let title = movie["title"] as! String
@@ -80,6 +110,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         }
         task.resume()
         
+        */
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -87,26 +118,31 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //the table view calls this method every time it needs a cell
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
+        cell.movie = movies[indexPath.row]
+        return cell
         
+        
+        
+        /*
+        
+        //the table view calls this method every time it needs a cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         let movie = movies[indexPath.row]
-        let title = movie["title"] as! String
-        let overview = movie["overview"] as! String
-        
-        cell.titleLabel.text = title
-        cell.overviewLabel.text = overview
-        
+        cell.titleLabel.text = movie.title
+        cell.overviewLabel.text = movie.overview
+        cell.posterImageView.af_setImage(withURL: movie.posterURL!)
+        /*
         let posterPath = movie["poster_path"] as! String
         let baseURL = "https://image.tmdb.org/t/p/w500"
         let posterURL = URL(string: baseURL + posterPath)! //unwrap with a bang
-        
         cell.posterImageView.af_setImage(withURL: posterURL)
-
+        */
         //print(overview)
         
         return cell
+ 
+        */
     }
     
     
