@@ -158,12 +158,6 @@ Here's a walkthrough of implemented user stories:
 ![Flix Lab 1 Demo](flix.gif)
 
 
-## Notes
-
-Describe any challenges encountered while building the app.
-Through most of my developement the height of my cell rows was very off. I knew that I was pulling the correct data from the network requests due to console printing, but it wasn't until I browsed the discussion forums that I figured out how to fix it.
-
-
 ## License
 
 Copyright [2018] [Kenia Rioja-Naranjo]
